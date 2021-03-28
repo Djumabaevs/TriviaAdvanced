@@ -27,14 +27,14 @@
         <TextView
             android:id="@+id/text_view_out_of"
             style="@style/MainTextStyle"
-            android:layout_width="138dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="218dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
             android:text="@string/question_text"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.16"
+            app:layout_constraintHorizontal_bias="0.091"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text" />
 
@@ -43,13 +43,13 @@
             android:layout_width="match_parent"
             android:layout_height="153dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="92dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#1B213A"
             android:elevation="12dp"
             app:cardCornerRadius="6dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_out_of">
 
@@ -96,8 +96,8 @@
 
         <TextView
             android:id="@+id/score_text"
-            android:layout_width="161dp"
-            android:layout_height="17dp"
+            android:layout_width="135dp"
+            android:layout_height="34dp"
             android:text="@string/score_text_message"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -107,14 +107,14 @@
             app:layout_constraintTop_toBottomOf="@+id/title_text" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/highest_text"
             android:layout_width="134dp"
             android:layout_height="27dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/highest_text"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.736"
+            app:layout_constraintHorizontal_bias="0.609"
             app:layout_constraintStart_toEndOf="@+id/text_view_out_of"
             app:layout_constraintTop_toBottomOf="@+id/score_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>

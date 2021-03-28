@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         score = new Score();
         prefs = new Prefs(MainActivity.this);
+
+        binding.highestText.setText(MessageFormat.format("Highest score: {0}", String.valueOf(prefs.getHighestScore())));
         binding.scoreText.setText(MessageFormat.format("Current scores: {0}", String.valueOf(score.getScore())));
 
         questionList = new Repository().getQuestions(questionArrayList -> {
@@ -51,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.buttonNext.setOnClickListener(view -> {
 
-            currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
-            updateQuestion();
+            getNextQuestion();
 
         });
         binding.buttonTrue.setOnClickListener(view -> {
@@ -67,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void getNextQuestion() {
+        currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
+        updateQuestion();
     }
 
     private void checkAnswer(boolean userChoseCorrect) {
@@ -126,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 binding.questionTextview.setTextColor(Color.WHITE);
+                getNextQuestion();
             }
 
             @Override
@@ -158,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 binding.questionTextview.setTextColor(Color.WHITE);
+                getNextQuestion();
             }
 
             @Override
@@ -172,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         prefs.saveHighestScore(score.getScore());
+        Log.d("Pause: ", "Saving state: " + prefs.getHighestScore());
         super.onPause();
     }
 }
