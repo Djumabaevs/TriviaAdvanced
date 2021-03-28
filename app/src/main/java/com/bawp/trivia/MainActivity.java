@@ -2,6 +2,7 @@ package com.bawp.trivia;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,6 +11,7 @@ import com.bawp.trivia.data.Repository;
 import com.bawp.trivia.databinding.ActivityMainBinding;
 import com.bawp.trivia.model.Question;
 import com.bawp.trivia.model.Score;
+import com.bawp.trivia.util.Prefs;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.MessageFormat;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private int scoreCounter;
     private Score score;
+    private Prefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         score = new Score();
+        prefs = new Prefs(MainActivity.this);
         binding.scoreText.setText(MessageFormat.format("Current scores: {0}", String.valueOf(score.getScore())));
 
         questionList = new Repository().getQuestions(questionArrayList -> {
@@ -165,5 +169,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onPause() {
+        prefs.saveHighestScore(score.getScore());
+        super.onPause();
+    }
 }
